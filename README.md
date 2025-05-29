@@ -38,6 +38,22 @@ pub fn main() {
 
 Further documentation can be found at <https://hexdocs.pm/gexcept>.
 
+# Q and A
+
+## Should I use this?
+No. Never.
+
+## Why you made this?
+Because it is possible.
+
+## Why shouldn't I use this?
+It breaks with central design elements of gleam.
+
+Building exceptions into your project
+will cause you more problems than it will solve (if it solves any problems at all)
+
+So please never ever use this package.
+
 ## Development
 
 ```sh
