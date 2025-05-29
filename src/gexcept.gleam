@@ -21,18 +21,7 @@ pub fn try(try_callback: fn() -> r, catch_callback: fn(e) -> r) -> r
 /// Note: The exception type is not checked.
 @external(erlang, "gexcepterl", "throw_ffi")
 @external(javascript, "./gexceptjs.mjs", "throw_ffi")
-pub fn throw(exception: e) -> Nil
-
-/// For tricking the Gleam type system
-/// 
-/// In order for `unwrap_or_throw` and `unwrap_option_or_throw` to work, we need to be able to construct an instance 
-/// of a generic type. This is not possible. However, since we can guarentee that this instance will never be used
-/// we can instead of Erlang/Javascripts weaker type system to create a Nil value that's typed as a generic.
-/// 
-/// Be very careful with this one!
-@external(erlang, "gexcepterl", "nil_value")
-@external(javascript, "./gexceptjs.mjs", "nil_value")
-fn generic_nil_value() -> a
+pub fn throw(exception: e) -> a
 
 /// For unwrapping results
 /// 
@@ -43,7 +32,6 @@ pub fn unwrap_or_throw(to_unwrap: Result(v, e)) -> v {
     Ok(v) -> v
     Error(e) -> {
       throw(e)
-      generic_nil_value()
     }
   }
 }
@@ -57,7 +45,6 @@ pub fn unwrap_option_or_throw(to_unwrap: Option(v), exception: e) -> v {
     Some(v) -> v
     None -> {
       throw(exception)
-      generic_nil_value()
     }
   }
 }
