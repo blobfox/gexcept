@@ -1,7 +1,7 @@
+import gexcept
 import gleam/function
 import gleeunit
 import gleeunit/should
-import gexcept
 
 pub fn main() {
   gleeunit.main()
