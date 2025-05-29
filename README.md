@@ -1,8 +1,5 @@
 # gexcept
 
-[![Package Version](https://img.shields.io/hexpm/v/gexcept)](https://hex.pm/packages/gexcept)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/gexcept/)
-
 Ever wanted to use exceptions in Gleam? Now you can!
 
 `gexcept` is a gleam library that provides exception handling in Gleam. It is build to be as generic as
@@ -47,7 +44,7 @@ pub fn main() {
 }
 ```
 
-Further documentation can be found at <https://hexdocs.pm/gexcept>.
+For further documentation see [/docs](/docs).
 
 ## Q&A
 
