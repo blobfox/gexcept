@@ -3,14 +3,36 @@
 [![Package Version](https://img.shields.io/hexpm/v/gexcept)](https://hex.pm/packages/gexcept)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/gexcept/)
 
+Ever wanted to use exceptions in Gleam? Now you can!
+
+`gexcept` is a gleam library that provides generic functions to exception handling in Gleam. 
+
+`gexcept.try()` takes two arguments: The try-callback - the function that might throw an exception - and the 
+catch-callback -  exception handler function. Both have to return the same type - this is resulting type of 
+the try expression. The exception handler gets called if the try-callback throws an exception. The argument 
+will be the exception.
+
+`gexcept.throw()` throws its argument as an exception. Throwing outside of a try-callback function is undefined behaviour.
+
 ```sh
-gleam add gexcept@1
+gleam add gexcept
 ```
 ```gleam
 import gexcept
+import gleam/io
 
 pub fn main() {
-  // TODO: An example of the project in use
+  gexcept.try(
+    fn() {
+      gexpect.throw("exception")
+
+      "return value"
+    },
+    fn(exception) {
+      "caught: " <> exception
+    }
+  )
+  |> io.println
 }
 ```
 
