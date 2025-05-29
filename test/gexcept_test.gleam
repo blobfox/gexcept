@@ -50,3 +50,40 @@ pub fn try_catch_block_gets_evaluated_test() {
   )
   |> should.equal(42)
 }
+
+pub fn try_nested_try_blocks_do_not_interfer_test() {
+  gexcept.try(
+    fn() {
+      gexcept.try(fn() { "no exception" }, fn(_) { "should not be called" })
+      <> gexcept.try(
+        fn() {
+          gexcept.throw(" exception")
+          "return"
+        },
+        function.identity,
+      )
+    },
+    fn(_) { "should not be called" },
+  )
+  |> should.equal("no exception exception")
+}
+
+pub fn try_catch_block_throws_again_test() {
+  gexcept.try(
+    fn() {
+      gexcept.try(
+        fn() {
+          gexcept.throw("exception")
+          "try 1 return"
+        },
+        fn(e) {
+          gexcept.throw("catch 1: " <> e)
+          "catch 1 return"
+        },
+      )
+      "try 2 return"
+    },
+    fn(e) { "catch 2: " <> e },
+  )
+  |> should.equal("catch 2: catch 1: exception")
+}
