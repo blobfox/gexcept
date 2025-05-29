@@ -9,3 +9,7 @@ export function try_ffi(try_callback, catch_callback) {
 export function throw_ffi(exception) {
     throw exception;
 }
+
+export function nil_value() {
+    return null;
+}

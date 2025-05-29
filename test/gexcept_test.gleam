@@ -1,5 +1,6 @@
 import gexcept
 import gleam/function
+import gleam/option.{type Option, None, Some}
 import gleeunit
 import gleeunit/should
 
@@ -86,4 +87,33 @@ pub fn try_catch_block_throws_again_test() {
     fn(e) { "catch 2: " <> e },
   )
   |> should.equal("catch 2: catch 1: exception")
+}
+
+pub fn unwrap_or_throw_on_ok_test() {
+  gexcept.try(fn() { gexcept.unwrap_or_throw(Ok("ok value")) }, fn(_) {
+    "should not be called"
+  })
+  |> should.equal("ok value")
+}
+
+pub fn unwrap_or_throw_on_error_test() {
+  gexcept.try(fn() { gexcept.unwrap_or_throw(Error("error value")) }, fn(e) {
+    "caught: " <> e
+  })
+  |> should.equal("caught: error value")
+}
+
+pub fn unwrap_option_or_throw_on_some_test() {
+  gexcept.try(
+    fn() { gexcept.unwrap_option_or_throw(Some("some value"), "exception") },
+    fn(_) { "should not be called" },
+  )
+  |> should.equal("some value")
+}
+
+pub fn unwrap_option_or_throw_on_none_test() {
+  gexcept.try(fn() { gexcept.unwrap_option_or_throw(None, "exception") }, fn(e) {
+    "caught: " <> e
+  })
+  |> should.equal("caught: exception")
 }
