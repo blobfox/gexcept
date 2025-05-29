@@ -1,6 +1,6 @@
 import gexcept
 import gleam/function
-import gleam/option.{type Option, None, Some}
+import gleam/option.{None, Some}
 import gleeunit
 import gleeunit/should
 

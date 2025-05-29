@@ -1,11 +1,11 @@
 import gleam/option.{type Option, None, Some}
 
 @external(erlang, "gexcepterl", "try_ffi")
-@external(javascript, "./gexceptjs.mjs", "_try")
+@external(javascript, "./gexceptjs.mjs", "try_ffi")
 pub fn try(try_callback: fn() -> r, catch_callback: fn(e) -> r) -> r
 
 @external(erlang, "gexcepterl", "throw_ffi")
-@external(javascript, "./gexceptjs.mjs", "_throw")
+@external(javascript, "./gexceptjs.mjs", "throw_ffi")
 pub fn throw(exception: e) -> Nil
 
 @external(erlang, "gexcepterl", "nil_value")
