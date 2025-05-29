@@ -47,9 +47,9 @@ No. Never.
 Because it is possible.
 
 ## Why shouldn't I use this?
-It breaks with a central design element of gleam.
+It breaks with central design elements of gleam.
 
-The return based error handling. Building exceptions into your project
+Building exceptions into your project
 will cause you more problems than it will solve (if it solves any problems at all)
 
 So please never ever use this package.
