@@ -1,11 +1,11 @@
 -module(gexcepterl).
 -export([try_ffi/2, throw_ffi/1]).
 
-try_ffi(Try_callback, Catch_callback) ->
-    try Try_callback() of
+try_ffi(TryCallback, CatchCallback) ->
+    try TryCallback() of
         R -> R
     catch
-        throw:E -> Catch_callback(E)
+        throw:E -> CatchCallback(E)
     end.
 
 
